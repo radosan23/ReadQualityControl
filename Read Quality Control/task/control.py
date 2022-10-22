@@ -1,0 +1,6 @@
+path = input()
+file = open(path)
+read = file.read().split('\n')
+read = '\n'.join(read[i] for i in range(4))
+file.close()
+print(read)
