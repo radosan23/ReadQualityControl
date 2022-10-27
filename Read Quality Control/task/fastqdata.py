@@ -8,7 +8,7 @@ class FASTQdata:
         self.av_len = self.av_length()
         self.av_GC = self.av_gc_cont()
         self.repeats = len(self.reads) - len(set(self.reads))
-        self.with_n, self.ns_per_seq = self.ns_seq()
+        self.ln_with_n, self.ns_per_seq = self.ns_seq()
         self.quality = self.eval_quality()
 
     @staticmethod
@@ -23,7 +23,7 @@ class FASTQdata:
         print(f'Reads in the file = {len(self.reads)}')
         print(f'Reads sequence average length = {self.av_len}')
         print(f'\nRepeats = {self.repeats}')
-        print(f'Reads with Ns = {self.with_n}')
+        print(f'Reads with Ns = {self.ln_with_n}')
         print(f'\nGC content average = {self.av_GC}%')
         print(f'Ns per read sequence = {self.ns_per_seq}%')
 
@@ -44,4 +44,4 @@ class FASTQdata:
         return len(ns), round(sum(ns) / len(self.reads), 2)
 
     def eval_quality(self):
-        return 1 / (self.repeats + self.with_n + self.ns_per_seq)
+        return 1 / (self.repeats + self.ln_with_n + self.ns_per_seq)
